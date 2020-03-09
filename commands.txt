@@ -1,0 +1,59 @@
+//build Dockerfile.dev
+docker build -f Dockerfile.dev .
+
+//delete node modules
+
+//run again 
+docker build -f Dockerfile.dev .
+
+//start docker wit port mapping
+docker run -p 3000:3000  cb12335692c5
+
+//Windows
+https://create-react-app.dev/docs/troubleshooting/#npm-start-doesn-t-detect-changes
+If the project runs inside a virtual machine, create an .env file 
+in your project directory if it doesn’t exist, and add CHOKIDAR_USEPOLLING=true to it. 
+This ensures that the next time you run npm start, the watcher uses the polling mode,
+ as necessary inside a VM.
+
+ //use docker volume -v to map current working dir to /app
+ //: map folder from inside the container to folder outside of the container
+ //-v without : is saying use folder from the container
+ //use docker-compose instead this long command
+docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app CONTAINER_ID
+
+//after use docker-compose
+docker-compose up
+
+//run test of the container app
+docker run 05f89a339142 yarn run test
+
+//run test in the container 
+docker run -it 05f89a339142 yarn run test
+
+//attach current test to existing container so we don't need to create second service
+// in docker-compose, so if we create another test it will run auto
+docker exec -it 4f873236763a yarn run test
+
+//can do real time tests with docker-compose second service "tests"
+//can't manipulate test scripts
+
+!!!!/////PRODUCTION
+//1.Install dependencies for building the project
+    get node tag using "as"
+    go to working dir '/app'
+    copy package.json in working dir
+    install dependencies
+    copy all in working dir
+    run npm run build and build the project im working dir /app/build
+//2.production phase
+    get nginx
+    copy build folder from first phase in nginx https://hub.docker.com/_/nginx
+    nginx start auto don't need command
+//commands 
+    docker build .    
+    docker run -p 8080:80 d98a5c169116
+    //nginx uses default port 80
+    
+
+
