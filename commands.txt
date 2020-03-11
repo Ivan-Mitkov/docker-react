@@ -56,4 +56,12 @@ docker exec -it 4f873236763a yarn run test
     //nginx uses default port 80
     
 
+!///Travis
+need a copy of docker running
+build image using Dockerfile.dev
+instructions to run test suite
+instruction for deploy
+//tag docker name/repo name
+docker build -t ivanmitkov/docker-react -f Dockerfile.dev .
+
 
